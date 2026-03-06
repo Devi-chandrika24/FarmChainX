@@ -1,0 +1,69 @@
+<aside
+  class="w-72 h-full bg-gradient-to-b from-indigo-900 to-slate-900 border-r border-indigo-500/10 flex flex-col text-white shadow-2xl relative overflow-hidden transition-colors duration-300">
+
+  <!-- Decorative background circle -->
+  <div class="absolute top-0 right-0 -mr-16 -mt-16 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl"></div>
+
+  <div class="p-8 border-b border-indigo-500/10 flex items-center gap-4 relative z-10">
+    <div
+      class="w-14 h-14 rounded-2xl flex items-center justify-center bg-indigo-600 shadow-lg shadow-indigo-950/20 border border-indigo-400/20">
+      <lucide-icon name="shield-check" class="w-8 h-8 text-white"></lucide-icon>
+    </div>
+
+    <div>
+      <div class="text-xl font-black tracking-tight leading-none">
+        FarmChainX
+      </div>
+      <div class="text-[10px] text-indigo-300 mt-1 font-black uppercase tracking-[0.2em] opacity-70">
+        {{ 'COMMON.ADMIN_HUB' | translate }}
+      </div>
+    </div>
+  </div>
+
+  <nav class="flex-1 p-6 space-y-2 overflow-y-auto relative z-10">
+    <!-- Overview -->
+    <a routerLink="/admin/overview" routerLinkActive="bg-white/10 text-white shadow-sm"
+      class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 text-indigo-100/70 hover:bg-white/5 hover:text-white font-bold group">
+      <lucide-icon name="layout-dashboard"
+        class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+      <span>{{ 'COMMON.NAV_OVERVIEW' | translate }}</span>
+    </a>
+
+    <!-- All Users -->
+    <a routerLink="/admin/users" routerLinkActive="bg-white/10 text-white shadow-sm"
+      class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 text-indigo-100/70 hover:bg-white/5 hover:text-white font-bold group">
+      <lucide-icon name="users" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+      <span>{{ 'COMMON.NAV_USERS' | translate }}</span>
+    </a>
+
+    <!-- System Logs -->
+    <a routerLink="/admin/logs" routerLinkActive="bg-white/10 text-white shadow-sm"
+      class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 text-indigo-100/70 hover:bg-white/5 hover:text-white font-bold group">
+      <lucide-icon name="file-text" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+      <span>{{ 'COMMON.NAV_LOGS' | translate }}</span>
+    </a>
+
+    <!-- Analytics -->
+    <a routerLink="/admin/analytics" routerLinkActive="bg-white/10 text-white shadow-sm"
+      class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 text-indigo-100/70 hover:bg-white/5 hover:text-white font-bold group">
+      <lucide-icon name="bar-chart-3"
+        class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+      <span>{{ 'COMMON.NAV_ANALYTICS' | translate }}</span>
+    </a>
+
+    <!-- Settings -->
+    <a routerLink="/admin/settings" routerLinkActive="bg-white/10 text-white shadow-sm"
+      class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-300 text-indigo-100/70 hover:bg-white/5 hover:text-white font-bold group">
+      <lucide-icon name="settings" class="w-5 h-5 opacity-70 group-hover:opacity-100 transition-opacity"></lucide-icon>
+      <span>{{ 'COMMON.NAV_SETTINGS' | translate }}</span>
+    </a>
+  </nav>
+
+  <div class="p-6 border-t border-indigo-500/10 relative z-10">
+    <a routerLink="/dashboard"
+      class="flex items-center gap-3 px-4 py-3 rounded-xl text-indigo-200 hover:text-white hover:bg-indigo-500/10 transition-all font-bold text-sm">
+      <lucide-icon name="arrow-right" class="w-4 h-4 rotate-180"></lucide-icon>
+      {{ 'COMMON.NAV_EXIT' | translate }}
+    </a>
+  </div>
+</aside>

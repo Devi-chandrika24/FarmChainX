@@ -1,0 +1,234 @@
+<div class="min-h-screen bg-slate-50 dark:bg-slate-900 overflow-hidden relative transition-colors duration-300">
+
+  <!-- Decorative blobs -->
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div
+      class="absolute top-10 -left-32 w-80 h-80 bg-indigo-100 dark:bg-indigo-900/40 rounded-full opacity-70 blur-3xl transition-colors duration-300">
+    </div>
+    <div
+      class="absolute bottom-20 right-10 w-96 h-96 bg-blue-100 dark:bg-blue-900/40 rounded-full opacity-50 blur-3xl transition-colors duration-300">
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-24 text-center">
+
+    <!-- Hero -->
+    <div class="animate-fade-in-up">
+      <div
+        class="inline-flex items-center gap-2.5 px-4 py-2 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-400 text-sm font-semibold rounded-full mb-10 shadow-sm transition-colors duration-300">
+        <span class="w-2 h-2 bg-indigo-500 dark:bg-indigo-400 rounded-full animate-pulse"></span>
+        Live Blockchain &bull; 100% Transparent
+      </div>
+    </div>
+
+    <h1
+      class="text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-tight mb-6 animate-fade-in-up animation-delay-100">
+      <span class="block text-indigo-700 dark:text-indigo-500">FarmChainX</span>
+      <span
+        class="block text-3xl md:text-4xl lg:text-5xl mt-5 text-slate-500 dark:text-slate-400 font-light tracking-widest uppercase">
+        {{ 'HOME.SUBTITLE' | translate }}
+      </span>
+    </h1>
+
+    <p
+      class="mt-8 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed font-normal animate-fade-in-up animation-delay-200">
+      {{ 'HOME.DESCRIPTION' | translate }}
+      <span class="block font-semibold text-indigo-700 dark:text-indigo-400 mt-3">
+        {{ 'HOME.FEATURES' | translate }}
+      </span>
+    </p>
+
+    <!-- Feature pills -->
+    <div class="mt-12 max-w-4xl mx-auto animate-fade-in-up animation-delay-200">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+        <span
+          class="inline-flex items-center bg-white dark:bg-slate-800 px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-400 transition-all duration-300">
+          <lucide-icon name="shield-check" class="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          {{ 'HOME.PILL_1' | translate }}
+        </span>
+        <span
+          class="inline-flex items-center bg-white dark:bg-slate-800 px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-400 transition-all duration-300">
+          <lucide-icon name="map-pin" class="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          {{ 'HOME.PILL_2' | translate }}
+        </span>
+        <span
+          class="inline-flex items-center bg-white dark:bg-slate-800 px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium shadow-sm hover:border-indigo-300 dark:hover:border-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-400 transition-all duration-300">
+          <lucide-icon name="truck" class="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          {{ 'HOME.PILL_3' | translate }}
+        </span>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div
+      class="mt-14 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up animation-delay-300">
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login" id="dashboard-login-btn"
+          class="px-10 py-4 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-bold text-lg rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+          {{ 'HOME.BTN_LOGIN' | translate }}
+        </a>
+        <a routerLink="/register" id="register-btn"
+          class="px-10 py-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 text-slate-700 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-indigo-400 font-bold text-lg rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300">
+          {{ 'HOME.BTN_REGISTER' | translate }}
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <a routerLink="/dashboard" id="my-dashboard-btn"
+          class="px-12 py-5 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white font-black text-xl rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none hover:scale-105 hover:-translate-y-1 transition-all duration-300">
+          {{ 'HOME.BTN_DASHBOARD' | translate }}
+        </a>
+        <a *ngIf="isFarmer" routerLink="/upload"
+          class="px-10 py-4 bg-white dark:bg-slate-800 border-2 border-indigo-300 dark:border-indigo-500 text-indigo-700 dark:text-indigo-400 font-bold text-lg rounded-2xl shadow-sm hover:bg-indigo-50 dark:hover:bg-slate-700 hover:scale-105 transition-all duration-300">
+          {{ 'HOME.BTN_UPLOAD' | translate }}
+        </a>
+        <a routerLink="/products/my"
+          class="px-10 py-4 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-lg rounded-2xl shadow-sm hover:border-slate-300 dark:hover:border-slate-500 hover:scale-105 transition-all duration-300">
+          {{ 'HOME.BTN_MY_PRODUCTS' | translate }}
+        </a>
+      </ng-container>
+    </div>
+
+    <!-- NEW: Animated Role Relationship Diagram -->
+    <div class="mt-24 max-w-5xl mx-auto text-center animate-fade-in-up animation-delay-300">
+      <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-12">{{ 'HOME.ANIMATION_TITLE' | translate }}</h3>
+
+      <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 md:gap-2">
+        <!-- Connecting Line (Desktop) -->
+        <div
+          class="hidden md:block absolute top-[40%] left-10 right-10 h-1 bg-slate-200 dark:bg-slate-700 -z-10 rounded-full">
+          <div
+            class="h-full bg-indigo-500 dark:bg-indigo-400 rounded-full w-full animate-[pulse_3s_ease-in-out_infinite] opacity-50">
+          </div>
+        </div>
+
+        <!-- 1. Farmer -->
+        <div
+          class="relative group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300 w-full md:w-1/4 hover:-translate-y-2">
+          <div
+            class="w-14 h-14 mx-auto bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-400 rounded-full flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <lucide-icon name="tractor" class="w-7 h-7"></lucide-icon>
+          </div>
+          <h4 class="font-bold text-slate-800 dark:text-white text-lg">{{ 'HOME.ROLE_FARMER' | translate }}</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">{{ 'HOME.ROLE_FARMER_DESC' | translate }}</p>
+        </div>
+
+        <lucide-icon name="arrow-right"
+          class="hidden md:block w-6 h-6 text-slate-300 dark:text-slate-600 animate-[bounce_2s_infinite]"></lucide-icon>
+
+        <!-- 2. Distributor -->
+        <div
+          class="relative group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300 w-full md:w-1/4 hover:-translate-y-2">
+          <div
+            class="w-14 h-14 mx-auto bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <lucide-icon name="truck" class="w-7 h-7"></lucide-icon>
+          </div>
+          <h4 class="font-bold text-slate-800 dark:text-white text-lg">{{ 'HOME.ROLE_DISTRIBUTOR' | translate }}</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">{{ 'HOME.ROLE_DISTRIBUTOR_DESC' | translate }}</p>
+        </div>
+
+        <lucide-icon name="arrow-right"
+          class="hidden md:block w-6 h-6 text-slate-300 dark:text-slate-600 animate-[bounce_2s_infinite]"></lucide-icon>
+
+        <!-- 3. Retailer -->
+        <div
+          class="relative group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300 w-full md:w-1/4 hover:-translate-y-2">
+          <div
+            class="w-14 h-14 mx-auto bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-400 rounded-full flex items-center justify-center mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors">
+            <lucide-icon name="store" class="w-7 h-7"></lucide-icon>
+          </div>
+          <h4 class="font-bold text-slate-800 dark:text-white text-lg">{{ 'HOME.ROLE_RETAILER' | translate }}</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">{{ 'HOME.ROLE_RETAILER_DESC' | translate }}</p>
+        </div>
+
+        <lucide-icon name="arrow-right"
+          class="hidden md:block w-6 h-6 text-slate-300 dark:text-slate-600 animate-[bounce_2s_infinite]"></lucide-icon>
+
+        <!-- 4. Consumer -->
+        <div
+          class="relative group bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-all duration-300 w-full md:w-1/4 hover:-translate-y-2">
+          <div
+            class="w-14 h-14 mx-auto bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 rounded-full flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <lucide-icon name="smartphone" class="w-7 h-7"></lucide-icon>
+          </div>
+          <h4 class="font-bold text-slate-800 dark:text-white text-lg">{{ 'HOME.ROLE_CONSUMER' | translate }}</h4>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">{{ 'HOME.ROLE_CONSUMER_DESC' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Stats -->
+    <div class="mt-28 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div
+        class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+        <div class="text-4xl md:text-5xl font-black text-indigo-700 dark:text-indigo-500 mb-2">100%</div>
+        <p
+          class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-semibold group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+          Traceable</p>
+      </div>
+      <div
+        class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+        <div class="text-4xl md:text-5xl font-black text-indigo-700 dark:text-indigo-500 mb-2">24/7</div>
+        <p
+          class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-semibold group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+          Live Sync</p>
+      </div>
+      <div
+        class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+        <div class="text-4xl md:text-5xl font-black text-blue-600 dark:text-blue-500 mb-2">0%</div>
+        <p
+          class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          Counterfeit</p>
+      </div>
+      <div
+        class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm dark:shadow-none p-6 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+        <div class="text-4xl md:text-5xl font-black text-indigo-700 dark:text-indigo-500 mb-2">1M+</div>
+        <p
+          class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-widest font-semibold group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+          Products</p>
+      </div>
+    </div>
+
+    <!-- Industry Standards -->
+    <div class="mt-20 max-w-5xl mx-auto">
+      <h3 class="text-sm font-semibold text-slate-400 dark:text-slate-500 mb-8 uppercase tracking-widest">
+        {{ 'HOME.STANDARDS_TITLE' | translate }}
+      </h3>
+      <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16">
+        <div class="text-center group">
+          <lucide-icon name="database"
+            class="w-9 h-9 mx-auto text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-2 transition-colors"></lucide-icon>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ 'HOME.STANDARD_GS1' | translate
+            }}</span>
+        </div>
+        <div class="text-center group">
+          <lucide-icon name="smartphone"
+            class="w-9 h-9 mx-auto text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-2 transition-colors"></lucide-icon>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ 'HOME.STANDARD_MOBILE' | translate
+            }}</span>
+        </div>
+        <div class="text-center group">
+          <lucide-icon name="cloud-cog"
+            class="w-9 h-9 mx-auto text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-2 transition-colors"></lucide-icon>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ 'HOME.STANDARD_IOT' | translate
+            }}</span>
+        </div>
+        <div class="text-center group">
+          <lucide-icon name="leaf"
+            class="w-9 h-9 mx-auto text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 mb-2 transition-colors"></lucide-icon>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">{{ 'HOME.STANDARD_CARBON' | translate
+            }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer tagline -->
+    <p class="mt-24 text-slate-400 dark:text-slate-500 text-base font-light tracking-wide">
+      Built for tomorrow's food chain. Powered by
+      <span class="font-bold text-indigo-700 dark:text-indigo-400">Database</span>
+      &amp;
+      <span class="font-bold text-indigo-700 dark:text-indigo-400">Trust</span>.
+    </p>
+  </div>
+</div>

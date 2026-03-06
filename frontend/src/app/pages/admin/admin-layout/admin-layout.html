@@ -1,0 +1,88 @@
+<div class="flex h-screen bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors duration-300">
+  <!-- Admin Sidebar (desktop) -->
+  <app-admin-sidebar class="hidden lg:flex"></app-admin-sidebar>
+
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Header -->
+    <header
+      class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 px-8 py-5 transition-colors duration-300 relative z-20">
+      <div class="max-w-full mx-auto">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-6">
+            <button (click)="toggleSidebar()"
+              class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 lg:hidden transition-colors">
+              <lucide-icon name="menu" class="w-6 h-6"></lucide-icon>
+            </button>
+            <div>
+              <h1 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                {{ 'ADMIN.DASHBOARD_TITLE' | translate }}
+              </h1>
+              <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">
+                {{ 'ADMIN.DASHBOARD_SUBTITLE' | translate }} <span
+                  class="text-indigo-600 dark:text-indigo-400 font-black ml-1">{{ currentAdminName() }}</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div
+              class="hidden sm:flex items-center gap-2.5 bg-indigo-50 dark:bg-indigo-500/10 px-4 py-2 rounded-xl border border-indigo-100 dark:border-indigo-500/20 shadow-sm transition-colors duration-300">
+              <div class="relative">
+                <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)]"></div>
+                <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full absolute inset-0 animate-ping opacity-30"></div>
+              </div>
+              <span class="text-xs font-black uppercase tracking-wider text-indigo-700 dark:text-indigo-400">
+                {{ 'ADMIN.STATUS_OPERATIONAL' | translate }}
+              </span>
+            </div>
+
+            <button
+              class="relative p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all group">
+              <lucide-icon name="bell" class="w-5 h-5 group-hover:rotate-12 transition-transform"></lucide-icon>
+              <span
+                class="absolute top-2.5 right-2.5 w-2 h-2 bg-indigo-600 rounded-full ring-2 ring-white dark:ring-slate-900"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950 transition-colors duration-300 p-8">
+      <div class="max-w-7xl mx-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+    <footer
+      class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-8 py-4 transition-colors duration-300 relative z-20">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+          © 2025 <span class="text-indigo-600 dark:text-indigo-400">FarmChainX</span> ADMIN PORTAL
+        </p>
+        <div
+          class="flex items-center gap-6 text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+          <a href="#" class="hover:text-indigo-600 transition">{{ 'COMMON.DOCUMENTATION' | translate }}</a>
+          <a href="#" class="hover:text-indigo-600 transition">{{ 'COMMON.SUPPORT' | translate }}</a>
+          <a href="#" class="hover:text-indigo-600 transition">{{ 'COMMON.PRIVACY' | translate }}</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div *ngIf="sidebarOpen" class="fixed inset-0 z-50 lg:hidden" (click)="toggleSidebar()">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out"></div>
+
+    <div
+      class="absolute left-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-2xl transform transition-transform duration-300 ease-in-out relative z-50 overflow-y-auto"
+      [ngClass]="{ 'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen }"
+      (click)="$event.stopPropagation()">
+      <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center mb-4">
+        <h3 class="text-xl font-black text-slate-900 dark:text-white uppercase tracking-wider">Admin</h3>
+        <button (click)="toggleSidebar()"
+          class="p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-400">&times;</button>
+      </div>
+      <app-admin-sidebar></app-admin-sidebar>
+    </div>
+  </div>
+</div>

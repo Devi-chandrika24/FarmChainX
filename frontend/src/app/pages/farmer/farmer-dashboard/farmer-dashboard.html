@@ -1,0 +1,281 @@
+<div class="min-h-screen bg-slate-50 dark:bg-slate-950 pb-12 transition-colors duration-300">
+  <!-- Header Section -->
+  <div
+    class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">{{ 'FARMER.DASHBOARD_TITLE' |
+            translate }}</h1>
+          <p class="mt-1 text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{{
+            'FARMER.DASHBOARD_SUBTITLE' | translate }}
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <a routerLink="/upload"
+            class="inline-flex items-center px-6 py-3 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-500 dark:hover:bg-indigo-400 text-white font-black text-sm uppercase tracking-widest rounded-xl shadow-lg shadow-indigo-950/20 transition-all scale-100 hover:scale-[1.02] active:scale-95">
+            <lucide-icon name="plus-circle" class="-ml-1 mr-2 h-5 w-5"></lucide-icon>
+            {{ 'FARMER.BTN_REGISTER_CROP' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+      <!-- Total Products -->
+      <div
+        class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl">
+            <lucide-icon name="package" class="h-6 w-6 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          </div>
+          <div>
+            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">{{
+              'FARMER.STAT_TOTAL_PRODUCTS' | translate }}</p>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">{{ stats.totalProducts }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Batches -->
+      <div
+        class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-xl">
+            <lucide-icon name="activity" class="h-6 w-6 text-blue-600 dark:text-blue-400"></lucide-icon>
+          </div>
+          <div>
+            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">{{
+              'FARMER.STAT_ACTIVE_BATCHES' | translate }}</p>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">{{ stats.activeBatches }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Est. Revenue -->
+      <div
+        class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl">
+            <lucide-icon name="banknote" class="h-6 w-6 text-emerald-600 dark:text-emerald-400"></lucide-icon>
+          </div>
+          <div>
+            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">{{
+              'FARMER.STAT_REVENUE' | translate }}</p>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">₹{{ stats.totalSales }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avg Quality -->
+      <div
+        class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
+        <div class="flex items-center gap-4">
+          <div class="p-3 bg-rose-50 dark:bg-rose-500/10 rounded-xl">
+            <lucide-icon name="award" class="h-6 w-6 text-rose-600 dark:text-rose-400"></lucide-icon>
+          </div>
+          <div>
+            <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">{{
+              'FARMER.STAT_QUALITY' | translate }}</p>
+            <p class="text-2xl font-black text-slate-900 dark:text-white">{{ stats.avgQuality }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left Column: Recent Activity -->
+      <div class="lg:col-span-2 space-y-8">
+        <div
+          class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden transition-colors duration-300">
+          <div
+            class="px-8 py-6 border-b border-slate-50 dark:border-slate-800 flex justify-between items-center bg-white dark:bg-slate-900">
+            <div>
+              <h3 class="text-xl font-black text-slate-900 dark:text-white tracking-tight">{{ 'FARMER.RECENT_HARVESTS' |
+                translate }}</h3>
+              <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-1">{{
+                'FARMER.RECENT_HARVESTS_DESC' | translate }}</p>
+            </div>
+            <a routerLink="/products/my"
+              class="text-xs font-black text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 uppercase tracking-widest transition-colors">
+              {{ 'COMMON.VIEW_ALL' | translate }} &rarr;
+            </a>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
+              <thead class="bg-slate-50/50 dark:bg-slate-800/50">
+                <tr>
+                  <th
+                    class="px-8 py-4 text-left text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    {{ 'FARMER.TBL_CROP_DETAILS' | translate }}</th>
+                  <th
+                    class="px-8 py-4 text-left text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    {{ 'FARMER.TBL_DATE' | translate }}</th>
+                  <th
+                    class="px-8 py-4 text-left text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    {{ 'FARMER.TBL_QUALITY' | translate }}</th>
+                  <th
+                    class="px-8 py-4 text-left text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+                    {{ 'FARMER.TBL_STATUS' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-50 dark:divide-slate-800/50">
+                <tr *ngIf="loading">
+                  <td colspan="4" class="px-8 py-16 text-center">
+                    <div class="flex flex-col items-center justify-center">
+                      <div
+                        class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4">
+                      </div>
+                      <span class="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">{{
+                        'FARMER.LBL_LOADING' | translate }}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="!loading && recentUploads.length === 0">
+                  <td colspan="4" class="px-8 py-20 text-center">
+                    <div class="flex flex-col items-center justify-center">
+                      <lucide-icon name="cloud-off"
+                        class="w-12 h-12 text-slate-200 dark:text-slate-800 mb-6"></lucide-icon>
+                      <p class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">{{
+                        'FARMER.LBL_NO_HARVESTS' | translate }}</p>
+                      <a routerLink="/upload"
+                        class="text-xs font-black text-indigo-600 dark:text-indigo-400 mt-4 uppercase tracking-widest hover:underline">{{
+                        'FARMER.LBL_START_REGISTERING' | translate }} &rarr;</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngFor="let p of recentUploads"
+                  class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-4">
+                      <div
+                        class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center text-lg">
+                        🌱</div>
+                      <div>
+                        <p class="text-sm font-black text-slate-900 dark:text-white">{{ p.cropName }}</p>
+                        <p class="text-[10px] font-mono text-slate-400 dark:text-slate-500 font-bold uppercase">ID: #{{
+                          p.id }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-8 py-5 text-sm font-bold text-slate-600 dark:text-slate-400">
+                    {{ p.harvestDate | date:'mediumDate' }}
+                  </td>
+                  <td class="px-8 py-5">
+                    <span class="px-3 py-1 text-[10px] font-black rounded-lg border-2 uppercase tracking-widest"
+                      [ngClass]="getQualityColor(p.qualityGrade)">
+                      {{ p.qualityGrade || ('FARMER.LBL_PENDING' | translate) }}
+                    </span>
+                  </td>
+                  <td class="px-8 py-5">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full shadow-sm"
+                        [ngClass]="p.sold ? 'bg-slate-300 dark:bg-slate-700' : 'bg-emerald-500 animate-pulse'"></span>
+                      <span class="text-[10px] font-black uppercase tracking-widest"
+                        [ngClass]="p.sold ? 'text-slate-400 dark:text-slate-500' : 'text-emerald-700 dark:text-emerald-400'">
+                        {{ p.sold ? ('FARMER.LBL_SOLD' | translate) : ('FARMER.LBL_IN_STOCK' | translate) }}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Smart Widgets -->
+      <div class="space-y-8">
+        <!-- Market Price Insights -->
+        <div
+          class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm p-8 overflow-hidden transition-colors duration-300">
+          <div class="flex items-center justify-between mb-8">
+            <h3 class="text-lg font-black text-slate-900 dark:text-white tracking-tight">{{ 'FARMER.LBL_LIVE_PRICES' |
+              translate }}</h3>
+            <div class="p-2 bg-indigo-50 dark:bg-indigo-500/10 rounded-xl">
+              <lucide-icon name="trending-up" class="w-5 h-5 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div *ngFor="let m of marketPrices"
+              class="flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border-2 border-transparent hover:border-slate-100 dark:hover:border-slate-800">
+              <div class="flex items-center gap-4">
+                <div class="w-3 h-3 rounded-full shadow-sm"
+                  [ngClass]="m.trend === 'up' ? 'bg-emerald-500' : 'bg-rose-500'"></div>
+                <div>
+                  <p class="text-sm font-black text-slate-800 dark:text-white">{{ m.crop }}</p>
+                  <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">{{
+                    m.unit }}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-sm font-black text-slate-900 dark:text-white">{{ m.price }}</p>
+                <p class="text-[11px] font-black" [ngClass]="m.trend === 'up' ? 'text-emerald-600' : 'text-rose-600'">
+                  {{ m.change }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="w-full mt-8 py-3.5 text-[10px] font-black text-indigo-600 dark:text-indigo-400 border-2 border-indigo-50 dark:border-indigo-900/40 rounded-xl hover:bg-indigo-50 dark:hover:bg-indigo-900/20 uppercase tracking-[0.2em] transition-all">
+            {{ 'FARMER.LBL_MARKET_ANALYSIS' | translate }} &rarr;
+          </button>
+        </div>
+
+        <!-- Weather Wisdom Widget -->
+        <div
+          class="bg-gradient-to-br from-indigo-700 to-indigo-900 rounded-3xl shadow-xl p-8 text-white relative overflow-hidden group">
+          <div
+            class="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-1000">
+          </div>
+
+          <div class="flex justify-between items-start mb-10 relative z-10">
+            <div>
+              <p class="text-[10px] font-black text-indigo-300 uppercase tracking-[0.2em]">{{ weatherData.location }}
+              </p>
+              <p class="text-5xl font-black mt-2 tracking-tighter">{{ weatherData.temp }}</p>
+              <p class="text-sm font-bold text-indigo-100 mt-1 opacity-80">{{ weatherData.condition }}</p>
+            </div>
+            <div
+              class="p-4 bg-white/20 backdrop-blur-md rounded-2xl shadow-inner group-hover:rotate-12 transition-transform duration-500">
+              <lucide-icon name="sun" class="w-10 h-10"></lucide-icon>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 relative z-10 border-t border-white/10 pt-8">
+            <div *ngFor="let day of weatherData.forecast" class="text-center">
+              <p class="text-[10px] font-black text-indigo-400 uppercase mb-3 tracking-widest">{{ day.day }}</p>
+              <lucide-icon [name]="day.icon" class="w-5 h-5 mx-auto mb-3 text-white/90"></lucide-icon>
+              <p class="text-[9px] font-black uppercase tracking-tighter leading-none whitespace-nowrap">{{ day.status
+                }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block Status -->
+        <div
+          class="bg-indigo-50 dark:bg-slate-900/60 border border-indigo-100 dark:border-slate-800 rounded-3xl p-8 transition-colors duration-300">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(79,70,229,0.4)]">
+            </div>
+            <p class="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em]">{{
+              'FARMER.LBL_BLOCKCHAIN_STATUS' | translate }}
+            </p>
+          </div>
+          <p class="text-sm font-black text-slate-900 dark:text-white mb-2 uppercase tracking-wide">{{
+            'FARMER.LBL_NETWORK_ACTIVE' | translate }}</p>
+          <p class="text-xs text-slate-500 dark:text-slate-500 leading-relaxed font-bold">
+            {{ 'FARMER.LBL_BLOCKCHAIN_SYNC_DESC' | translate }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

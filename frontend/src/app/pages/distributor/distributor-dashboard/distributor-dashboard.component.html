@@ -1,0 +1,179 @@
+<div class="min-h-screen bg-slate-50 dark:bg-slate-950 pb-12 transition-colors duration-300">
+  <!-- Header -->
+  <div
+    class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-8 py-10">
+      <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">{{ 'COMMON.DISTRIBUTOR_DASHBOARD' |
+        translate }}</h1>
+      <p class="mt-1 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">{{
+        'DASHBOARD.DISTRIBUTOR_SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-8 mt-12">
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <!-- Stat Card 1 -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-xl group">
+        <div class="flex items-center justify-between mb-6">
+          <div class="p-3 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl group-hover:rotate-12 transition-transform">
+            <lucide-icon name="users" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          </div>
+          <span
+            class="text-[9px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 px-2 py-1 rounded-lg">↑
+            12%</span>
+        </div>
+        <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-1">{{
+          'DASHBOARD.FARMERS_CONNECTED' | translate }}</p>
+        <p class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{{ stats.connectedFarmers }}</p>
+      </div>
+
+      <!-- Stat Card 2 -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-xl group">
+        <div class="flex items-center justify-between mb-6">
+          <div class="p-3 bg-blue-50 dark:bg-blue-500/10 rounded-2xl group-hover:rotate-12 transition-transform">
+            <lucide-icon name="package" class="w-6 h-6 text-blue-600 dark:text-blue-400"></lucide-icon>
+          </div>
+          <span
+            class="text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest bg-blue-50 dark:bg-blue-500/10 px-2 py-1 rounded-lg">Transit</span>
+        </div>
+        <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-1">{{
+          'DASHBOARD.ACTIVE_BATCHES' | translate }}</p>
+        <p class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{{ stats.activeBatches }}</p>
+      </div>
+
+      <!-- Stat Card 3 -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-xl group">
+        <div class="flex items-center justify-between mb-6">
+          <div class="p-3 bg-rose-50 dark:bg-rose-500/10 rounded-2xl group-hover:rotate-12 transition-transform">
+            <lucide-icon name="clock" class="w-6 h-6 text-rose-600 dark:text-rose-400"></lucide-icon>
+          </div>
+          <span
+            class="text-[9px] font-black text-rose-600 dark:text-rose-400 uppercase tracking-widest bg-rose-50 dark:bg-rose-500/10 px-2 py-1 rounded-lg">Action</span>
+        </div>
+        <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-1">{{
+          'DASHBOARD.PENDING_ORDERS' | translate }}</p>
+        <p class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{{ stats.pendingOrders }}</p>
+      </div>
+
+      <!-- Stat Card 4 -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-100 dark:border-slate-800 shadow-sm transition-all duration-300 hover:shadow-xl group">
+        <div class="flex items-center justify-between mb-6">
+          <div class="p-3 bg-indigo-50 dark:bg-indigo-500/10 rounded-2xl group-hover:rotate-12 transition-transform">
+            <lucide-icon name="banknote" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></lucide-icon>
+          </div>
+          <span
+            class="text-[9px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest bg-indigo-50 dark:bg-indigo-500/10 px-2 py-1 rounded-lg">Assets</span>
+        </div>
+        <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-1">{{
+          'DASHBOARD.INVENTORY_VALUE' | translate }}</p>
+        <p class="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">₹{{ stats.revenue | number }}</p>
+      </div>
+    </div>
+
+    <!-- Charts & Actions -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+      <!-- Main Chart: Sales -->
+      <div
+        class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm p-10 transition-colors">
+        <div class="flex items-center justify-between mb-10">
+          <h3 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight uppercase tracking-wide">{{
+            'DASHBOARD.REVENUE_ANALYTICS' | translate }}</h3>
+          <select
+            class="text-[10px] font-black bg-slate-50 dark:bg-slate-800 border-none rounded-xl px-4 py-2 uppercase tracking-widest focus:ring-2 focus:ring-indigo-500 transition-all">
+            <option>Last 6 Months</option>
+            <option>Last Year</option>
+          </select>
+        </div>
+        <div class="h-80">
+          <canvas #salesChart></canvas>
+        </div>
+      </div>
+
+      <!-- Secondary Chart: Inventory -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm p-10 transition-colors group">
+        <h3 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-10 uppercase tracking-wide">{{
+          'DASHBOARD.MIX' | translate }}</h3>
+        <div class="h-64 flex items-center justify-center">
+          <canvas #inventoryChart></canvas>
+        </div>
+        <div class="mt-8 text-center">
+          <span
+            class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-1">{{
+            'DASHBOARD.TOTAL_ASSETS' | translate }}</span>
+          <span class="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">₹{{ stats.revenue | number
+            }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Row -->
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Action 1: Procure -->
+      <a routerLink="../farmer-procurement"
+        class="group relative bg-indigo-600 rounded-[2.5rem] p-10 text-white overflow-hidden shadow-2xl shadow-indigo-900/40 hover:-translate-y-2 transition-all duration-300">
+
+        <div
+          class="absolute -right-6 -top-6 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700">
+        </div>
+
+        <div class="relative z-10">
+          <h3 class="text-2xl font-black mb-2 tracking-tight">{{ 'DASHBOARD.PROCURE_CROPS' | translate }}</h3>
+          <p class="text-indigo-100 font-bold text-sm mb-8 opacity-80">{{ 'DASHBOARD.PROCURE_CROPS_DESC' | translate }}
+          </p>
+          <span
+            class="inline-flex items-center bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-indigo-600 transition-all">
+            Open Market &rarr;
+          </span>
+        </div>
+        <lucide-icon name="shopping-basket"
+          class="absolute right-8 bottom-8 text-white/5 w-40 h-40 group-hover:scale-110 transition-transform"></lucide-icon>
+      </a>
+
+      <!-- Action 2: Manage Logistics -->
+      <a routerLink="../inventory"
+        class="group relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl transition-all duration-300">
+        <div class="relative z-10 text-slate-900 dark:text-white">
+          <h3 class="text-2xl font-black mb-2 tracking-tight">{{ 'DASHBOARD.LOGISTICS' | translate }}</h3>
+          <p class="text-slate-400 dark:text-slate-500 font-bold text-sm mb-8 uppercase tracking-widest">{{
+            'DASHBOARD.LOGISTICS_DESC' | translate }}</p>
+          <span
+            class="text-indigo-600 dark:text-indigo-400 font-black text-[10px] uppercase tracking-widest group-hover:underline">View
+            Fleet Status &rarr;</span>
+        </div>
+        <lucide-icon name="truck"
+          class="absolute right-8 bottom-8 text-slate-100 dark:text-slate-800 w-40 h-40 group-hover:scale-110 transition-transform"></lucide-icon>
+      </a>
+
+      <!-- Recent Activity Feed -->
+      <div
+        class="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2.5rem] p-10 shadow-sm transition-colors">
+        <h3 class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-8">{{
+          'DASHBOARD.SYSTEM_ACTIVITY' | translate }}</h3>
+        <div class="space-y-6">
+          <div *ngFor="let activity of recentActivities" class="flex gap-4 group">
+            <div class="mt-1.5 flex-shrink-0 w-2.5 h-2.5 rounded-full shadow-sm"
+              [ngClass]="{'bg-emerald-500': activity.type === 'purchase', 'bg-blue-500': activity.type === 'logistics', 'bg-rose-500': activity.type === 'alert'}">
+            </div>
+            <div>
+              <p
+                class="text-sm font-black text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">
+                {{ activity.text }}</p>
+              <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase mt-1 tracking-widest">{{
+                activity.time }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

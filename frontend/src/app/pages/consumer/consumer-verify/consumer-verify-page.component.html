@@ -1,0 +1,227 @@
+<div class="min-h-screen bg-slate-50 dark:bg-slate-950 pb-12 transition-colors duration-300">
+  <!-- Header -->
+  <div
+    class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-8 py-10">
+      <h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase tracking-wide">
+        {{ 'VERIFY.TITLE' | translate }}
+      </h1>
+      <p class="mt-1 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
+        {{ 'VERIFY.SUBTITLE' | translate }}
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-8 -mt-8">
+
+    <!-- Input Card -->
+    <div
+      class="bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-xl p-10 mb-12 relative overflow-hidden group">
+      <div
+        class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-all duration-700">
+      </div>
+
+      <label class="block text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-4">
+        {{ 'VERIFY.LBL_INPUT' | translate }}
+      </label>
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="relative flex-grow group/input">
+          <input [(ngModel)]="codeInput" [disabled]="loading" type="text" placeholder="e.g. BATCH-2025-8821"
+            class="w-full pl-6 pr-4 py-4 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-lg font-black text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-300 dark:placeholder:text-slate-600">
+        </div>
+        <button (click)="verifyManual()" [disabled]="loading || !codeInput"
+          class="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black px-12 py-4 rounded-2xl transition-all hover:bg-indigo-600 dark:hover:bg-indigo-500 dark:hover:text-white disabled:opacity-30 disabled:cursor-not-allowed text-xs uppercase tracking-widest shadow-lg shadow-slate-950/20 active:scale-95">
+          <span *ngIf="!loading">{{ 'VERIFY.BTN_VERIFY' | translate }}</span>
+          <span *ngIf="loading" class="flex items-center gap-2">
+            <lucide-icon name="loader-2" class="w-4 h-4 animate-spin"></lucide-icon>
+            {{ 'VERIFY.BTN_CHECKING' | translate }}
+          </span>
+        </button>
+      </div>
+      <div class="mt-6 text-center">
+        <button (click)="scanQR()"
+          class="text-indigo-600 dark:text-indigo-400 font-black text-[10px] hover:underline flex items-center justify-center gap-2 mx-auto uppercase tracking-widest">
+          <lucide-icon name="qr-code" class="w-4 h-4"></lucide-icon>
+          {{ 'VERIFY.BTN_SWITCH_SCANNER' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Result Section -->
+    <div *ngIf="productData" class="space-y-12 animate-in fade-in slide-in-from-bottom-5 duration-700">
+
+      <!-- Product Summary -->
+      <div
+        class="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col lg:flex-row items-center gap-10">
+        <div
+          class="w-32 h-32 bg-slate-50 dark:bg-slate-800 rounded-[2rem] flex items-center justify-center overflow-hidden border border-slate-100 dark:border-slate-700 shadow-inner group/img">
+          <img *ngIf="productData.imagePath" [src]="productData.imagePath"
+            class="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500">
+          <lucide-icon *ngIf="!productData.imagePath" name="sprout"
+            class="w-12 h-12 text-slate-200 dark:text-slate-700"></lucide-icon>
+        </div>
+
+        <div class="text-center lg:text-left flex-grow">
+          <div class="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight uppercase tracking-wider">{{
+              productData.cropName }}</h2>
+            <span
+              class="bg-emerald-500 text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg shadow-emerald-500/20">
+              {{ 'VERIFY.LBL_AUTHENTIC' | translate }}
+            </span>
+          </div>
+          <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 mt-2 uppercase tracking-widest">UUID: {{
+            productData.publicUuid }}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">{{
+                'VERIFY.LBL_ORIGIN' | translate }}</span>
+              <span class="text-sm font-black text-slate-900 dark:text-white">{{ productData.originLocation }}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">{{
+                'VERIFY.LBL_PRICE' | translate }}</span>
+              <span class="text-sm font-black text-slate-900 dark:text-white">₹{{ productData.price }}</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">{{
+                'VERIFY.LBL_QUALITY' | translate }}</span>
+              <span class="text-sm font-black text-indigo-600 dark:text-indigo-400">GRADE {{ productData.qualityGrade ||
+                'N/A' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Score Card -->
+        <div
+          class="bg-slate-900 dark:bg-white p-8 rounded-[2rem] text-center min-w-[220px] shadow-2xl relative overflow-hidden group">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-blue-500"></div>
+          <p class="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-2">{{
+            'VERIFY.LBL_AI_TRUST_SCORE' | translate }}</p>
+          <div class="text-5xl font-black text-white dark:text-slate-900 tracking-tighter">{{ aiTrustScore }}%</div>
+          <p
+            class="text-[9px] font-bold text-slate-500 dark:text-slate-400 mt-3 leading-relaxed uppercase tracking-widest italic group-hover:text-indigo-400 dark:hover:text-indigo-600 transition-colors">
+            {{ aiAnalysis }}</p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative py-12 px-4">
+        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
+
+        <div class="space-y-16">
+          <div *ngFor="let step of timeline; let even = even"
+            class="relative flex flex-col md:flex-row items-center gap-10 md:gap-0"
+            [ngClass]="even ? 'md:flex-row-reverse' : ''">
+
+            <!-- Timeline Icon -->
+            <div
+              class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 md:translate-y-0 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 shadow-xl z-20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 transition-all hover:scale-110 hover:shadow-indigo-500/10"
+              [ngClass]="{'border-indigo-500 ring-4 ring-indigo-500/5': step.status === 'active'}">
+              <lucide-icon [name]="step.icon" class="w-6 h-6"></lucide-icon>
+            </div>
+
+            <!-- Content Card -->
+            <div class="w-full md:w-[42%] group">
+              <div
+                class="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500 relative"
+                [ngClass]="{'border-indigo-500/30 shadow-indigo-500/5': step.status === 'active'}">
+
+                <div class="flex justify-between items-start mb-6">
+                  <div>
+                    <h4
+                      class="text-lg font-black text-slate-900 dark:text-white tracking-tight leading-tight uppercase tracking-wide">
+                      {{ step.title }}</h4>
+                    <p
+                      class="text-[10px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mt-1">
+                      {{ step.role }} &bull; {{ step.actor }}</p>
+                  </div>
+                  <span
+                    class="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-full">
+                    {{ step.date | date:'mediumDate' }}
+                  </span>
+                </div>
+
+                <div
+                  class="flex items-center gap-3 text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-6">
+                  <lucide-icon name="map-pin" class="w-3.5 h-3.5"></lucide-icon>
+                  <span>{{ step.location }}</span>
+                </div>
+
+                <div
+                  class="text-[10px] font-black text-emerald-500 bg-emerald-500/5 border border-emerald-500/10 inline-block px-4 py-2 rounded-xl uppercase tracking-widest">
+                  {{ step.details }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Spacer for the other side -->
+            <div class="hidden md:block w-[42%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="timeline.length === 0 && !loading"
+        class="text-center py-20 bg-white dark:bg-slate-900 rounded-[3rem] border-2 border-dashed border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center">
+        <lucide-icon name="history" class="w-16 h-16 text-slate-100 dark:text-slate-800 mb-6"></lucide-icon>
+        <h3 class="text-xl font-black text-slate-400 dark:text-slate-600 uppercase tracking-widest">{{
+          'VERIFY.LBL_NO_HISTORY' | translate }}</h3>
+      </div>
+
+    </div>
+
+
+    <!-- Feedback Section -->
+    <div
+      class="mt-16 bg-white dark:bg-slate-900 rounded-[3.5rem] p-12 shadow-sm border border-slate-100 dark:border-slate-800 transition-all overflow-hidden relative group">
+      <div
+        class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-all duration-700">
+      </div>
+
+      <h3
+        class="text-2xl font-black text-slate-900 dark:text-white mb-8 text-center lg:text-left uppercase tracking-widest">
+        {{ 'VERIFY.LBL_RATE_PRODUCT' | translate }}</h3>
+
+      <div *ngIf="!feedbackSubmitted" class="relative z-10">
+        <div class="flex justify-center lg:justify-start gap-3 mb-10">
+          <button *ngFor="let r of [1,2,3,4,5]" (click)="setRating(r)"
+            class="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-sm border group/star active:scale-90"
+            [ngClass]="rating >= r ? 'bg-indigo-600 border-indigo-500 text-white shadow-indigo-600/20' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-300 dark:text-slate-600 hover:border-indigo-300'">
+            <lucide-icon name="star" class="w-6 h-6" [ngClass]="rating >= r ? 'fill-current' : ''"></lucide-icon>
+          </button>
+        </div>
+
+        <div class="relative group/textarea">
+          <textarea [(ngModel)]="feedbackText" rows="4" placeholder="Is the produce fresh? Any packaging issues?"
+            class="w-full p-6 bg-slate-50 dark:bg-slate-800 border-none rounded-[2rem] text-sm font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 transition-all placeholder:text-slate-300 dark:placeholder:text-slate-600 resize-none mb-8"></textarea>
+        </div>
+
+        <button (click)="submitFeedback()" [disabled]="rating === 0"
+          class="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black py-5 rounded-[2rem] hover:bg-indigo-600 dark:hover:bg-indigo-500 dark:hover:text-white transition-all shadow-xl shadow-slate-900/10 active:scale-95 disabled:opacity-20 disabled:cursor-not-allowed text-xs uppercase tracking-[0.2em]">
+          {{ 'VERIFY.BTN_SUBMIT_FEEDBACK' | translate }}
+        </button>
+      </div>
+
+      <div *ngIf="feedbackSubmitted" class="text-center py-10 relative z-10 animate-in zoom-in duration-500">
+        <div
+          class="w-24 h-24 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-8">
+          <lucide-icon name="check-circle" class="w-12 h-12"></lucide-icon>
+        </div>
+        <h4 class="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-widest">{{
+          'VERIFY.LBL_THANKS_FEEDBACK' | translate }}</h4>
+        <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-3">{{
+          'VERIFY.LBL_FEEDBACK_DESC' | translate }}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error"
+    class="max-w-xl mx-auto mt-12 bg-rose-500/10 border border-rose-500/20 p-6 rounded-3xl text-center flex items-center justify-center gap-4 animate-in shake duration-500">
+    <lucide-icon name="alert-circle" class="w-6 h-6 text-rose-500"></lucide-icon>
+    <p class="font-black text-rose-500 uppercase tracking-widest text-xs">{{ error }}</p>
+  </div>
+
+</div>
