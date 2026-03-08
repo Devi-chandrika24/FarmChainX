@@ -116,8 +116,23 @@ export class UploadProduct {
           console.error('Upload error full:', err);
           console.error('Status:', err?.status);
           console.error('Error body:', err?.error);
-          const serverMsg = err?.error?.message || err?.error?.error || err?.statusText || (err?.message ? err.message : 'Upload failed!');
-          alert(`Upload failed: ${serverMsg}`);
+          
+          let errorMsg = 'Upload failed!';
+          
+          // Check for specific error conditions
+          if (err?.status === 0 || err?.statusText === 'Unknown Error') {
+            errorMsg = 'Backend server is not running (http://localhost:8080). Please start the backend and try again.';
+          } else if (err?.error?.message) {
+            errorMsg = err.error.message;
+          } else if (err?.error?.error) {
+            errorMsg = err.error.error;
+          } else if (err?.statusText && err.statusText !== 'Unknown Error') {
+            errorMsg = err.statusText;
+          } else if (err?.message) {
+            errorMsg = err.message;
+          }
+          
+          alert(`Upload failed: ${errorMsg}`);
         }
       });
   }

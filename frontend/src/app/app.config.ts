@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors, HttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MockApiInterceptor } from './interceptors/mock-api.interceptor';
 import { Observable } from 'rxjs';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { LucideAngularModule, ShieldCheck, MapPin, Truck, Tractor, Store, Smartphone, ArrowRight, Database, CloudCog, Leaf, Globe, ChevronDown, Moon, Sun, Menu, X, LayoutDashboard, QrCode, Package, User, LogOut, PlusCircle, Search, Activity, Banknote, Award, TrendingUp } from 'lucide-angular';
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([JwtInterceptor])
+      withInterceptors([MockApiInterceptor, JwtInterceptor])
     ),
     importProvidersFrom(
       TranslateModule.forRoot({

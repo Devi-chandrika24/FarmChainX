@@ -6,23 +6,22 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ThemeService {
     private readonly THEME_KEY = 'app_theme';
-    private isDarkThemeSubject = new BehaviorSubject<boolean>(false);
+    private isDarkThemeSubject = new BehaviorSubject<boolean>(true);
     public isDarkTheme$ = this.isDarkThemeSubject.asObservable();
 
     constructor() {
         this.initTheme();
     }
 
-    private initTheme() {
+    public initTheme() {
         const savedTheme = localStorage.getItem(this.THEME_KEY);
         if (savedTheme === 'dark') {
             this.setDarkTheme(true);
         } else if (savedTheme === 'light') {
             this.setDarkTheme(false);
         } else {
-            // Check system preference
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.setDarkTheme(prefersDark);
+            // Default to dark theme
+            this.setDarkTheme(true);
         }
     }
 
@@ -40,5 +39,8 @@ export class ThemeService {
         } else {
             document.documentElement.classList.remove('dark');
         }
+        
+        // Force repaint for Tailwind dark mode detection
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
     }
 }

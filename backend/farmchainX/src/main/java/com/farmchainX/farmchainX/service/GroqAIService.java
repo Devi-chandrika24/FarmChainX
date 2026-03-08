@@ -18,12 +18,12 @@ import com.farmchainX.farmchainX.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "groq.api.key", matchIfMissing = false)
+@org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name = "groq.api.key", matchIfMissing = true)
 public class GroqAIService {
 
     private static final String GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-    @Value("${groq.api.key}")
+    @Value("${groq.api.key:}")
     private String apiKey;
 
     @Value("${groq.api.model:llama-3.3-70b-versatile}")
